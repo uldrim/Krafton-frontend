@@ -18,12 +18,16 @@ export function initSocket() {
   });
 
   socket.on("state", (state) => {
-    GameState.updateFromServer(state);
+    setTimeout(() => {
+      GameState.addServerState(state);
+    }, 200);
   });
 }
 
 export function sendInput() {
   if (socket) {
-    socket.emit("input", inputState);
+    setTimeout(() => {
+      socket.emit("input", inputState);
+    }, 200);
   }
 }
